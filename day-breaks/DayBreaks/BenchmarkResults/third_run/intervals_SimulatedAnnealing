@@ -1,0 +1,23 @@
++---------------------------+
+Name: medium
+Count: 5
+CostPerKm: 200
+CostPerKm: 200
+SourceDepotName: depot 0
++---------------------------+
++---------------------------+
+Name: small
+Count: 5
+CostPerKm: 100
+CostPerKm: 100
+SourceDepotName: depot 0
++---------------------------+
++---------------------------+
+Name: large
+Count: 10
+CostPerKm: 500
+CostPerKm: 500
+SourceDepotName: depot 0
++---------------------------+
+Estimated cost: 433 400
+Not visited clients: 0

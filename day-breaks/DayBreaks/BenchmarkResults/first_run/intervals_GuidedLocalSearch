@@ -1,0 +1,38 @@
++---------------------------+
+Name: medium
+Count: 20
+RentalType: Contract
+CostPerKm: 200
+CostPerKm: 200
+SourceDepotName: depot 0
+Start day: 0
++---------------------------+
++---------------------------+
+Name: small
+Count: 5
+RentalType: Spot
+CostPerKm: 100
+CostPerKm: 100
+SourceDepotName: depot 0
+Start day: 0
++---------------------------+
++---------------------------+
+Name: small
+Count: 5
+RentalType: Spot
+CostPerKm: 100
+CostPerKm: 100
+SourceDepotName: depot 0
+Start day: 1
++---------------------------+
++---------------------------+
+Name: small
+Count: 5
+RentalType: Spot
+CostPerKm: 100
+CostPerKm: 100
+SourceDepotName: depot 0
+Start day: 2
++---------------------------+
+Estimated cost: 391570
+Not visited clients: 54

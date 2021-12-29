@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DayBreaks", "day-breaks\DayBreaks\DayBreaks.csproj", "{B8ED5378-78CD-4415-ACA9-6BC23E4786B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolomonBenchmark", "solomon-benchmark\SolomonBenchmark.csproj", "{0CF20DCA-1223-4A95-AF21-43363AD161BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools", "Tools\Tools.csproj", "{31425E0A-31C7-4748-A093-90A16987D1E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8ED5378-78CD-4415-ACA9-6BC23E4786B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8ED5378-78CD-4415-ACA9-6BC23E4786B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8ED5378-78CD-4415-ACA9-6BC23E4786B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8ED5378-78CD-4415-ACA9-6BC23E4786B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CF20DCA-1223-4A95-AF21-43363AD161BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CF20DCA-1223-4A95-AF21-43363AD161BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CF20DCA-1223-4A95-AF21-43363AD161BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CF20DCA-1223-4A95-AF21-43363AD161BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31425E0A-31C7-4748-A093-90A16987D1E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31425E0A-31C7-4748-A093-90A16987D1E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31425E0A-31C7-4748-A093-90A16987D1E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31425E0A-31C7-4748-A093-90A16987D1E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

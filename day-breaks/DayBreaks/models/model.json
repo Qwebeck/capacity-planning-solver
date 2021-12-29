@@ -1,0 +1,60 @@
+{
+  "VehicleTypes": [
+    {
+      "Name": "medium",
+      "Capacity": 200,
+      "CostPerKm": 10,
+      "CostAsContractVehicle": 500,
+      "CostAsSpotVehicle": 650
+    }
+  ],
+  "Depots": [
+    {
+      "Name": "depot_A", 
+      "Coords": {"X": 80, "Y": 90},
+      "Vehicles": {
+        "medium": 5
+      }
+    }
+  ],
+  "Clients": [{
+      "Name": "client_A",
+      "Coords": {"X":10,"Y": 10}
+    },
+    {
+      "Name": "client_B",
+      "Coords": {"X": 140, "Y":30}
+    },
+    {
+      "Name": "client_C",
+      "Coords": {"X": 80, "Y":50 } 
+    }
+  ],
+  "Visits": [
+    [
+      {
+        "PointName": "client_A",
+        "Demand": 10,
+        "FromTime": "320",
+        "ToTime": "440",
+        "ServiceTime": "10"
+      }
+    ],
+    [
+      {
+      "PointName": "client_A",
+      "Demand": 10,
+      "FromTime": "320",
+      "ToTime": "440",
+      "ServiceTime": "10"
+      }
+    ],
+    [{
+      "PointName": "client_A",
+      "Demand": 10,
+      "FromTime": "320",
+      "ToTime": "440",
+      "ServiceTime": "10"
+    }]
+  ]
+}

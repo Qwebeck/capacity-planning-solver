@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Google.OrTools" Version="9.1.9490" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\solomon-benchmark\SolomonBenchmark.csproj" />
+      <ProjectReference Include="..\..\Tools\Tools.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="DebugSolutions" />
+      <Folder Include="FleetStructureTestResults\FirstEvaluation" />
+    </ItemGroup>
+
+</Project>
