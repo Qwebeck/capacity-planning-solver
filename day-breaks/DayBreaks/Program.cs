@@ -72,8 +72,8 @@ namespace DayBreaks
             
             //---------------
             // RunVrpWithDifferentMetaheuristics();
-            RunBatchFleetStructurePlanning();
-            // RunFleetStructureTest();
+            // RunBatchFleetStructurePlanning();
+            RunFleetStructureTest();
         }
 
         private static void RunFleetStructureTest()
@@ -98,12 +98,17 @@ namespace DayBreaks
                 {
                     var fleetStructurePath = problemJsonPath.Replace(problemPrefix, "solution");
                     var fleetStructureEvaluator = new FleetStructureEvaluator(problemJsonPath, fleetStructurePath);
+                    var overestimatePath =  problemJsonPath.Replace(problemPrefix, "fleetStructureEvaluationResult");
+                    if (Directory.Exists(overestimatePath))
+                    {
+                        return;
+                    }
                     var result = fleetStructureEvaluator.Evaluate(problemModel =>
                     {
                         var constraintModel = BreaksAsIntervalsConstraintModelFactory.FromProblemModel(problemModel);
                         return new VrpSolver<IntervalsDimensionMatrix, IntervalsNodeManager>(constraintModel);
                     });
-                    var overestimatePath =  problemJsonPath.Replace(problemPrefix, "fleetStructureEvaluationResult");
+                    
                     SaveJson(result, overestimatePath);
                 });    
             });

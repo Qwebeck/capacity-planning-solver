@@ -17,7 +17,8 @@ namespace DayBreaks.Solver.Solvers.Concrete
     {
         private readonly OrToolsLinearSolver _solver;
         private readonly Dictionary<Variable, VehicleParams> _variableToVehicleParams = new ();
-
+        private readonly ProblemModel _problemModel;
+        private string DepotName => _problemModel.Depots.First().Name;
         public LinearSolver(ProblemModel problemModel)
         {
             _solver = OrToolsLinearSolver.CreateSolver("SCIP");
@@ -29,7 +30,8 @@ namespace DayBreaks.Solver.Solvers.Concrete
 
             var totalCost = vehicleAmountsVars.LinearSolverSum((acc, variable) =>
                 acc + variable * _variableToVehicleParams[variable].UsageCost);
-            
+
+            _problemModel = problemModel;
             _solver.Add(availableCapacitiesExpression >= totalDemand);
             _solver.Minimize(totalCost);
         }
@@ -85,7 +87,8 @@ namespace DayBreaks.Solver.Solvers.Concrete
                     Capacity = vehicle.Capacity,
                     Count = Convert.ToInt32(variable.SolutionValue()),
                     MonthUsageCost = vehicle.UsageCost,
-                    RentalType = vehicle.RentalType
+                    RentalType = vehicle.RentalType,
+                    SourceDepotName = DepotName
                 };
             });
         

@@ -138,9 +138,9 @@ namespace DayBreaks.Solver.ConstraintModels.Concrete.BreaksAsIntervals
 
         private void BindVehicleToDepot(int vehicleIdx, int day)
         {
-            var depotNode = NodeManager.GetVehicleStartDepotForDay(vehicleIdx, day);
+            var depotNode = NodeManager.GetVehicleEndDepotForDay(vehicleIdx, day);
             var depotIdx = IndexManager.NodeToIndex(depotNode);
-            Routing.VehicleVar(depotIdx).SetValues(new long[] {vehicleIdx});
+            Routing.VehicleVar(depotIdx).SetValues(new long[] {-1, vehicleIdx});
             
         }
 

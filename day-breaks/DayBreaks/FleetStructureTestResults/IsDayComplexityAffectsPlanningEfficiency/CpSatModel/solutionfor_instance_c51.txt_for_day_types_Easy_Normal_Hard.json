@@ -1,0 +1,17 @@
+{
+  "FleetPositions": [
+    {
+      "Count": 15,
+      "RentalType": 0,
+      "Name": "small",
+      "Capacity": 100,
+      "MonthUsageCost": 22500,
+      "DayUsageCost": 0,
+      "CostPerKm": 1,
+      "SourceDepotName": "depot 0",
+      "StartDay": 0,
+      "EndDay": 0
+    }
+  ],
+  "EstimatedCost": 337500
+}

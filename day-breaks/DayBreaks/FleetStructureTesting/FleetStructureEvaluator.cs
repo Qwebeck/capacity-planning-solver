@@ -77,7 +77,8 @@ namespace DayBreaks.FleetStructureTesting
         
         private ProblemModel CreateOneDayProblemModel(IEnumerable<DepotVehiclesModification> depotVehiclesModifications)
         {
-            var visitsAmount = _random.Next(0, _possibleVisits.Count);
+            var visitsAmount = _random.Next((int)_problemModel.Days.Average(day => day.Visits.Count()),
+                _problemModel.Days.Max(day => day.Visits.Count()));
             var visits = _possibleVisits.ChooseRandomItems(visitsAmount).Distinct(new VisitsComparer());
             var vehicles = CreateContractVehiclesFromFleet(depotVehiclesModifications);
 

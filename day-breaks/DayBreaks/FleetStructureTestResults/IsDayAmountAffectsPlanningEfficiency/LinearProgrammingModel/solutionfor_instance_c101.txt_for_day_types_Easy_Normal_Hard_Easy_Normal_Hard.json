@@ -5,7 +5,7 @@
       "RentalType": 0,
       "Name": "small",
       "Capacity": 100,
-      "MonthUsageCost": 1500,
+      "MonthUsageCost": 1200,
       "DayUsageCost": 0,
       "CostPerKm": 0,
       "SourceDepotName": "depot 0",
@@ -13,11 +13,11 @@
       "EndDay": 0
     },
     {
-      "Count": 9,
+      "Count": 15,
       "RentalType": 0,
-      "Name": "medium",
-      "Capacity": 200,
-      "MonthUsageCost": 3000,
+      "Name": "large",
+      "Capacity": 300,
+      "MonthUsageCost": 3600,
       "DayUsageCost": 0,
       "CostPerKm": 0,
       "SourceDepotName": "depot 0",
@@ -29,7 +29,7 @@
       "RentalType": 1,
       "Name": "small",
       "Capacity": 100,
-      "MonthUsageCost": 750,
+      "MonthUsageCost": 300,
       "DayUsageCost": 0,
       "CostPerKm": 0,
       "SourceDepotName": "depot 0",
@@ -41,7 +41,7 @@
       "RentalType": 1,
       "Name": "small",
       "Capacity": 100,
-      "MonthUsageCost": 750,
+      "MonthUsageCost": 300,
       "DayUsageCost": 0,
       "CostPerKm": 0,
       "SourceDepotName": "depot 0",
@@ -53,7 +53,43 @@
       "RentalType": 1,
       "Name": "small",
       "Capacity": 100,
-      "MonthUsageCost": 750,
+      "MonthUsageCost": 300,
+      "DayUsageCost": 0,
+      "CostPerKm": 0,
+      "SourceDepotName": "depot 0",
+      "StartDay": 0,
+      "EndDay": 0
+    },
+    {
+      "Count": 5,
+      "RentalType": 1,
+      "Name": "small",
+      "Capacity": 100,
+      "MonthUsageCost": 300,
+      "DayUsageCost": 0,
+      "CostPerKm": 0,
+      "SourceDepotName": "depot 0",
+      "StartDay": 0,
+      "EndDay": 0
+    },
+    {
+      "Count": 5,
+      "RentalType": 1,
+      "Name": "small",
+      "Capacity": 100,
+      "MonthUsageCost": 300,
+      "DayUsageCost": 0,
+      "CostPerKm": 0,
+      "SourceDepotName": "depot 0",
+      "StartDay": 0,
+      "EndDay": 0
+    },
+    {
+      "Count": 5,
+      "RentalType": 1,
+      "Name": "small",
+      "Capacity": 100,
+      "MonthUsageCost": 300,
       "DayUsageCost": 0,
       "CostPerKm": 0,
       "SourceDepotName": "depot 0",
@@ -61,5 +97,5 @@
       "EndDay": 0
     }
   ],
-  "EstimatedCost": 60750
+  "EstimatedCost": 81000
 }

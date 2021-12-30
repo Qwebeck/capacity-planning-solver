@@ -34,9 +34,9 @@ namespace DayBreaks.Solver.Solvers.Concrete
                 operations_research_constraint_solver.DefaultRoutingSearchParameters();
             searchParameters.TimeLimit = new Duration
             {
-                Seconds =  60*50
+                Seconds =  60
             };
-            searchParameters.FirstSolutionStrategy = FirstSolutionStrategy.Types.Value.LocalCheapestArc;
+            searchParameters.FirstSolutionStrategy = FirstSolutionStrategy.Types.Value.AllUnperformed;
             searchParameters.LocalSearchMetaheuristic = metaheuristic;
             searchParameters.LogSearch = true;
             var assignment = _constraintModel.Routing.SolveWithParameters(searchParameters);

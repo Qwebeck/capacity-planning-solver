@@ -97,10 +97,10 @@ namespace DayBreaks.Mappers
         }
 
         
-        private static IEnumerable<Visit> CreateVisitsForDay(SolomonBenchmarkModel model, IEnumerable<VisitMutation> timeIntervals, DayType dayType, Random random)
+        private static IEnumerable<Visit> CreateVisitsForDay(SolomonBenchmarkModel model, IEnumerable<VisitMutation> mutations, DayType dayType, Random random)
         {
             var visitsCount = GetVisitsCountForDay(dayType, model.Customers.Count);
-            var visitMutations = timeIntervals.ToList().ChooseRandomItems(visitsCount, random);
+            var visitMutations = mutations.ToList().ChooseRandomItems(visitsCount, random);
             return (from customerMutationTuple  in model.Customers.ChooseRandomItems(visitsCount, random).Zip(visitMutations, (customer, mutation) => (customer, mutation))
                 where !model.IsDepot(customerMutationTuple.customer)
                 select new Visit

@@ -29,7 +29,7 @@ namespace DayBreaks.Solver.Solvers.Concrete.CpSat
         public FleetStructure Solve(CpSatSolverParams solverParams)
         {
             var (model, solver) = (new CpModel(), new CpSolver());
-            var vehicleVariablesByDays = AddConstraints(model).ToList();
+            var vehicleVariablesByDays = CreateConstraints(model).ToList();
 
             LinearExpr SumForDay(IEnumerable<VariableWithVehicle> day) => LinearExpr.ScalProd(day.Select(v => v.IsVehicleActive), day.Select(v => v.VehicleInstance.DayUsageCost));
             var objective = LinearExpr.Sum(vehicleVariablesByDays.Select(SumForDay));
@@ -42,7 +42,7 @@ namespace DayBreaks.Solver.Solvers.Concrete.CpSat
 
         }
         
-        private IEnumerable<IEnumerable<VariableWithVehicle>> AddConstraints(CpModel cpModel)
+        private IEnumerable<IEnumerable<VariableWithVehicle>> CreateConstraints(CpModel cpModel)
         {
             var vehicleVariablesByDays = _problemModel.Days.Select((day, idx) => CreateDayModel(cpModel, idx, day)).ToList();
             ConnectContractVehiclesVariables(cpModel, vehicleVariablesByDays);
@@ -115,6 +115,7 @@ namespace DayBreaks.Solver.Solvers.Concrete.CpSat
                 
                 for (var i = 1; i < isVehicleActiveVars.Count; ++i)
                 {
+                    // All used or all unused 
                     cpModel.AddImplication(isVehicleActiveVars[i - 1], isVehicleActiveVars[i]).OnlyEnforceIf(isVehicleActiveVars[0]);
                     cpModel.AddImplication(isVehicleActiveVars[i - 1].Not(), isVehicleActiveVars[i].Not()).OnlyEnforceIf(isVehicleActiveVars[0].Not());
                 }
