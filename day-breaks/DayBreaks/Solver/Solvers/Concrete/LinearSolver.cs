@@ -26,7 +26,7 @@ namespace DayBreaks.Solver.Solvers.Concrete
             
             var availableCapacitiesExpression = vehicleAmountsVars.LinearSolverSum((acc, variable) =>
                 acc + variable * _variableToVehicleParams[variable].Capacity);
-            long totalDemand = problemModel.Days.Sum(day => day.Visits.Sum(visit => visit.Demand));
+            var totalDemand = problemModel.Days.Sum(day => day.Visits.Sum(visit => visit.Demand));
 
             var totalCost = vehicleAmountsVars.LinearSolverSum((acc, variable) =>
                 acc + variable * _variableToVehicleParams[variable].UsageCost);

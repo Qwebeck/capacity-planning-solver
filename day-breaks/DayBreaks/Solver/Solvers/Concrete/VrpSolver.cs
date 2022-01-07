@@ -20,41 +20,34 @@ namespace DayBreaks.Solver.Solvers.Concrete
     {
         private readonly ConstraintModel<TDimensionMatrix, TNodeManager> _constraintModel;
         private readonly string _solverName;
-
-        public VrpSolver(ConstraintModel<TDimensionMatrix, TNodeManager> constraintModel): this(constraintModel, "VRP solver") { }
-        public VrpSolver(ConstraintModel<TDimensionMatrix, TNodeManager> constraintModel, string solverName) => (_constraintModel, _solverName) = (constraintModel, solverName);
+        private readonly int _timeLimit;
+        
+        public VrpSolver(ConstraintModel<TDimensionMatrix, TNodeManager> constraintModel, string solverName = "VRP solver", int timeLimit = 60 * 3) => (_constraintModel, _solverName, _timeLimit) = (constraintModel, solverName, timeLimit);
         private VehicleManager VehicleManager => _constraintModel.VehicleManager;
         private ProblemModel ProblemModel => _constraintModel.ProblemModel;
         private RoutingModel Routing => _constraintModel.Routing;
         private INodeManager NodeManager => _constraintModel.NodeManager;
         private RoutingIndexManager IndexManager => _constraintModel.IndexManager;
-        public VrpSolution Solve(LocalSearchMetaheuristic.Types.Value metaheuristic)
+
+        public VrpSolution Solve(LocalSearchMetaheuristic.Types.Value metaheuristic) =>
+            Solve(metaheuristic, _timeLimit);
+        public VrpSolution Solve(LocalSearchMetaheuristic.Types.Value metaheuristic, int timeLimitInSeconds)
         {
             var searchParameters =
                 operations_research_constraint_solver.DefaultRoutingSearchParameters();
             searchParameters.TimeLimit = new Duration
             {
-                Seconds =  60
+                Seconds =  timeLimitInSeconds
             };
             searchParameters.FirstSolutionStrategy = FirstSolutionStrategy.Types.Value.AllUnperformed;
             searchParameters.LocalSearchMetaheuristic = metaheuristic;
             searchParameters.LogSearch = true;
             var assignment = _constraintModel.Routing.SolveWithParameters(searchParameters);
-            if (assignment is null) return null;
-            Save(assignment, metaheuristic);
-            return CreateSolution(assignment);
+            return assignment is null ? null : CreateSolution(assignment);
         }
 
         public VrpSolution Solve() => Solve(LocalSearchMetaheuristic.Types.Value.SimulatedAnnealing);
-
-        private void Save(Assignment assignment, LocalSearchMetaheuristic.Types.Value metaheuristic)
-        {
-            var model = CreateSolution(assignment);
-            var json = JsonConvert.SerializeObject(model, Formatting.Indented);
-            const string folder = @"C:\Users\Bohdan\Projects\thesis\capacity-planning-solver\day-breaks\DayBreaks\DebugSolutions";
-            File.WriteAllText($"{folder}\\{_solverName}_{metaheuristic}", json);
-        }
-
+        
         private VrpSolution CreateSolution(Assignment assignment) => new ()
             {
                 Depots = ProblemModel.Depots,

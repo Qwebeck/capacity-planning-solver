@@ -1,0 +1,77 @@
+{
+  "FleetPositions": [
+    {
+      "Count": 5,
+      "RentalType": 0,
+      "Name": "small",
+      "Capacity": 100,
+      "MonthUsageCost": 1500,
+      "DayUsageCost": 0,
+      "CostPerKm": 1,
+      "SourceDepotName": "depot 0",
+      "StartDay": 0,
+      "EndDay": 0
+    },
+    {
+      "Count": 15,
+      "RentalType": 0,
+      "Name": "medium",
+      "Capacity": 200,
+      "MonthUsageCost": 3000,
+      "DayUsageCost": 0,
+      "CostPerKm": 2,
+      "SourceDepotName": "depot 0",
+      "StartDay": 0,
+      "EndDay": 0
+    },
+    {
+      "Count": 4,
+      "RentalType": 0,
+      "Name": "large",
+      "Capacity": 300,
+      "MonthUsageCost": 4500,
+      "DayUsageCost": 0,
+      "CostPerKm": 3,
+      "SourceDepotName": "depot 0",
+      "StartDay": 0,
+      "EndDay": 0
+    },
+    {
+      "Count": 5,
+      "RentalType": 1,
+      "Name": "small",
+      "Capacity": 100,
+      "MonthUsageCost": 750,
+      "DayUsageCost": 0,
+      "CostPerKm": 1,
+      "SourceDepotName": "depot 0",
+      "StartDay": 0,
+      "EndDay": 0
+    },
+    {
+      "Count": 5,
+      "RentalType": 1,
+      "Name": "small",
+      "Capacity": 100,
+      "MonthUsageCost": 750,
+      "DayUsageCost": 0,
+      "CostPerKm": 1,
+      "SourceDepotName": "depot 0",
+      "StartDay": 1,
+      "EndDay": 0
+    },
+    {
+      "Count": 5,
+      "RentalType": 1,
+      "Name": "small",
+      "Capacity": 100,
+      "MonthUsageCost": 750,
+      "DayUsageCost": 0,
+      "CostPerKm": 1,
+      "SourceDepotName": "depot 0",
+      "StartDay": 2,
+      "EndDay": 0
+    }
+  ],
+  "EstimatedCost": 81750
+}

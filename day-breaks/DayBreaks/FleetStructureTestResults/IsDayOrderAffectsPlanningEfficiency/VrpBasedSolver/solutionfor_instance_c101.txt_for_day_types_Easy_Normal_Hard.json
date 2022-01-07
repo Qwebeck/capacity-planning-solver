@@ -13,7 +13,7 @@
       "EndDay": 0
     },
     {
-      "Count": 11,
+      "Count": 10,
       "RentalType": 0,
       "Name": "medium",
       "Capacity": 200,
@@ -61,5 +61,5 @@
       "EndDay": 0
     }
   ],
-  "EstimatedCost": 66750
+  "EstimatedCost": 63750
 }

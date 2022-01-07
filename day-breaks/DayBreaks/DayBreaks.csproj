@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="CommandLineParser" Version="2.9.0-preview1" />
       <PackageReference Include="Google.OrTools" Version="9.1.9490" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
@@ -17,7 +18,8 @@
 
     <ItemGroup>
       <Folder Include="DebugSolutions" />
-      <Folder Include="FleetStructureTestResults\FirstEvaluation" />
+      <Folder Include="FleetStructureTestResults\ThesisResults" />
+      <Folder Include="FleetStructureTestResults\SecondEvaluation" />
     </ItemGroup>
 
 </Project>

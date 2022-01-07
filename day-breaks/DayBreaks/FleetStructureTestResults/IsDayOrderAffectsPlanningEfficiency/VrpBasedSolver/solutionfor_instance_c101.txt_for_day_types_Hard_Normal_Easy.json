@@ -1,7 +1,7 @@
 {
   "FleetPositions": [
     {
-      "Count": 5,
+      "Count": 14,
       "RentalType": 0,
       "Name": "small",
       "Capacity": 100,
@@ -13,25 +13,13 @@
       "EndDay": 0
     },
     {
-      "Count": 15,
+      "Count": 12,
       "RentalType": 0,
       "Name": "medium",
       "Capacity": 200,
       "MonthUsageCost": 3000,
       "DayUsageCost": 0,
       "CostPerKm": 2,
-      "SourceDepotName": "depot 0",
-      "StartDay": 0,
-      "EndDay": 0
-    },
-    {
-      "Count": 4,
-      "RentalType": 0,
-      "Name": "large",
-      "Capacity": 300,
-      "MonthUsageCost": 4500,
-      "DayUsageCost": 0,
-      "CostPerKm": 3,
       "SourceDepotName": "depot 0",
       "StartDay": 0,
       "EndDay": 0
@@ -73,5 +61,5 @@
       "EndDay": 0
     }
   ],
-  "EstimatedCost": 81750
+  "EstimatedCost": 68250
 }

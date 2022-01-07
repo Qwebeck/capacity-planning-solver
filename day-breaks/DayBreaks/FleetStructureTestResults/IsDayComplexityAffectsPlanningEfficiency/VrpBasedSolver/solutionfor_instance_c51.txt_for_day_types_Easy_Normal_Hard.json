@@ -1,7 +1,7 @@
 {
   "FleetPositions": [
     {
-      "Count": 3,
+      "Count": 4,
       "RentalType": 0,
       "Name": "small",
       "Capacity": 100,
@@ -61,5 +61,5 @@
       "EndDay": 0
     }
   ],
-  "EstimatedCost": 21750
+  "EstimatedCost": 23250
 }

@@ -13,13 +13,25 @@
       "EndDay": 0
     },
     {
-      "Count": 11,
+      "Count": 9,
       "RentalType": 0,
       "Name": "medium",
       "Capacity": 200,
       "MonthUsageCost": 3000,
       "DayUsageCost": 0,
       "CostPerKm": 2,
+      "SourceDepotName": "depot 0",
+      "StartDay": 0,
+      "EndDay": 0
+    },
+    {
+      "Count": 2,
+      "RentalType": 0,
+      "Name": "large",
+      "Capacity": 300,
+      "MonthUsageCost": 4500,
+      "DayUsageCost": 0,
+      "CostPerKm": 3,
       "SourceDepotName": "depot 0",
       "StartDay": 0,
       "EndDay": 0
@@ -61,5 +73,5 @@
       "EndDay": 0
     }
   ],
-  "EstimatedCost": 66750
+  "EstimatedCost": 69750
 }

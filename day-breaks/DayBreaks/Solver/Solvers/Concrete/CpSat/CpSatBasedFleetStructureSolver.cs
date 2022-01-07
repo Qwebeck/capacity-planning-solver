@@ -16,16 +16,19 @@ namespace DayBreaks.Solver.Solvers.Concrete.CpSat
     public record CpSatSolverParams(int MaxTime);
     public class CpSatBasedFleetStructureSolver: IFleetStructureSolver
     {
-        private static CpSatSolverParams DefaultSolverParmas = new CpSatSolverParams( 50*60);
+        private readonly CpSatSolverParams _solverParams;
         private static int MaxPointsVehicleCouldServeInDay => 8;
         private readonly ProblemModel _problemModel;
         private readonly VehicleManager _vehicleManager;
         
-        
-        public CpSatBasedFleetStructureSolver(ProblemModel problemModel) => (_problemModel, _vehicleManager) = (problemModel, new VehicleManager(problemModel));
+        public CpSatBasedFleetStructureSolver(ProblemModel problemModel, CpSatSolverParams solverParams) 
+            => (_problemModel, _vehicleManager, _solverParams) = (problemModel, new VehicleManager(problemModel), solverParams);
+
+        public CpSatBasedFleetStructureSolver(ProblemModel problemModel) : this(problemModel, new CpSatSolverParams(MaxTime: 50 * 60)) 
+        { }
 
 
-        public FleetStructure Solve() => Solve(DefaultSolverParmas);
+        public FleetStructure Solve() => Solve(_solverParams);
         public FleetStructure Solve(CpSatSolverParams solverParams)
         {
             var (model, solver) = (new CpModel(), new CpSolver());

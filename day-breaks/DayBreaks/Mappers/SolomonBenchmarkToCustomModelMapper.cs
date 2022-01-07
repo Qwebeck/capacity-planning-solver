@@ -1,15 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DayBreaks.Mappers.Models;
 using DayBreaks.Problem;
 using SolomonBenchmark.Models;
 using Tools.Extensions;
 using SolomonBenchmarkModel = SolomonBenchmark.Models.Model;
+
 namespace DayBreaks.Mappers
 {
-    
-    public enum DayType { Hard, Normal, Easy }
-    internal record VisitMutation(int FromTime, int ToTime, int ServiceTime, int Demand);
     public static class SolomonBenchmarkToCustomModelMapper
     {
 
@@ -43,24 +42,24 @@ namespace DayBreaks.Mappers
             }
         };
 
-        public static ProblemModel CreateModelFromSolomonBenchmarkFile(string path, DayType dayType,
+        public static ProblemModel CreateModelFromSolomonBenchmarkFile(string path, CharacteristicDayDescription description,
             IEnumerable<VehicleType> vehicleTypes = null, Random random = null)
-            => CreateModelFromSolomonBenchmarkFile(path, new [] {dayType}, vehicleTypes, random);
+            => CreateModelFromSolomonBenchmarkFile(path, new [] {description}, vehicleTypes, random);
 
-        public static ProblemModel CreateModelFromSolomonBenchmarkFile(string path, IEnumerable<DayType> dayTypes, 
+        public static ProblemModel CreateModelFromSolomonBenchmarkFile(string path, IEnumerable<CharacteristicDayDescription> descriptions, 
             IEnumerable<VehicleType> vehicleTypes=null, Random random=null)
         {
             random ??= DefaultRandom;
             vehicleTypes ??= DefaultVehicleTypes;
             var solomonBenchmarkModel = SolomonBenchmarkModel.fromFile(path);
-            var visitIntervals = SelectValidVisitIntervals(solomonBenchmarkModel.Customers).ToList();    
+            var visitIntervals = CreateVisitMutations(solomonBenchmarkModel.Customers).ToList();    
             return new ProblemModel
             {
                 Budget = 10000000,
                 MaxDistance = 10000000,
                 Clients = GetClientsFromModel(solomonBenchmarkModel).ToList(),
                 Depots = GetDepotsFromModel(solomonBenchmarkModel, vehicleTypes).ToList(),
-                Days = GetVisitsFromModel(solomonBenchmarkModel, visitIntervals, dayTypes, random).ToList(),
+                Days = GetVisitsFromModel(solomonBenchmarkModel, visitIntervals, descriptions, random).ToList(),
                 VehicleTypes = vehicleTypes.ToList()
             };
         }
@@ -85,25 +84,25 @@ namespace DayBreaks.Mappers
             }).ToList();
         }
         
-        private static IEnumerable<Day> GetVisitsFromModel(SolomonBenchmarkModel model, IEnumerable<VisitMutation> timeIntervals, IEnumerable<DayType> dayTypes, Random random)
+        private static IEnumerable<Day> GetVisitsFromModel(SolomonBenchmarkModel model, IEnumerable<VisitMutation> timeIntervals, IEnumerable<CharacteristicDayDescription> descriptions, Random random)
         {
-            var dayCount = dayTypes.Count();
-            var days = dayTypes.Select(dayType => new Day
+            var dayCount = descriptions.Count();
+            var days = descriptions.Select(description => new Day
             {
-                Visits = CreateVisitsForDay(model, timeIntervals, dayType, random).ToList(),
-                Occurrences = 15 / dayCount
+                Visits = CreateVisitsForDay(model, timeIntervals, description.DayType, random).ToList(),
+                Occurrences = description.Occurrences
             });
             return days.ToList();
         }
 
         
-        private static IEnumerable<Visit> CreateVisitsForDay(SolomonBenchmarkModel model, IEnumerable<VisitMutation> mutations, DayType dayType, Random random)
+        private static IEnumerable<Problem.Visit> CreateVisitsForDay(SolomonBenchmarkModel model, IEnumerable<VisitMutation> mutations, DayType dayType, Random random)
         {
-            var visitsCount = GetVisitsCountForDay(dayType, model.Customers.Count);
+            var visitsCount = dayType.CalculateVisitsCount(model.Customers.Count);
             var visitMutations = mutations.ToList().ChooseRandomItems(visitsCount, random);
             return (from customerMutationTuple  in model.Customers.ChooseRandomItems(visitsCount, random).Zip(visitMutations, (customer, mutation) => (customer, mutation))
                 where !model.IsDepot(customerMutationTuple.customer)
-                select new Visit
+                select new Problem.Visit
                 {
                     Demand = customerMutationTuple.mutation.Demand,
                     FromTime = customerMutationTuple.mutation.FromTime,
@@ -114,7 +113,7 @@ namespace DayBreaks.Mappers
         }
         
 
-        private static IEnumerable<VisitMutation> SelectValidVisitIntervals(IEnumerable<Customer> visits)
+        private static IEnumerable<VisitMutation> CreateVisitMutations(IEnumerable<Customer> visits)
         {
             visits = visits.ToList();
             var validWindowsLengths = visits.Select(visit => visit.DueTime - visit.ReadyTime).Distinct();
@@ -127,13 +126,5 @@ namespace DayBreaks.Mappers
                 from demand in validDemands
                 select new VisitMutation(startTime, startTime + timeWindowLen, serviceTime, demand)).ToList();
         }
-
-        private static int GetVisitsCountForDay(DayType dayType, int maxVistsCount) =>  Convert.ToInt32(dayType switch
-        {
-        DayType.Easy => 0.31,
-        DayType.Normal => 0.51,
-        DayType.Hard => 1,
-        _ => throw new ArgumentOutOfRangeException(nameof(dayType), dayType, null)
-        } * maxVistsCount);
     }
 }

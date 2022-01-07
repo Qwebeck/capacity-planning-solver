@@ -7,7 +7,7 @@ namespace DayBreaks.Problem
     public class Visit
     {
         public string PointName { get; set; }
-        public int Demand { get; set; }
+        public long Demand { get; set; }
         /// <summary>
         /// Minutes from day start to day end
         /// </summary>
