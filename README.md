@@ -11,7 +11,7 @@ Repository provides a Command Line Interface that allows perform a fleet structu
 - Break between two routes for the same vehicle should be at least 8 hours.
 
 The objective is to minimize fleet.
-Refer to Chapter 3 of attached [thesis file]() for more details.
+Refer to Chapter 3 of attached [thesis file](https://github.com/Qwebeck/capacity-planning-solver/blob/master/thesis.pdf) for more details.
 
 
 
@@ -24,7 +24,7 @@ Repository contains three Solvers for Fleet Structure Optimization Problem, impl
 
 VRP solver taks in consideration all constraints that do exists in the problem, while CP-SAT and Linear solvers are working on a relaxed version of problem.
 
-Refer to Chapter 4 of attached [thesis file]() for more details.
+Refer to Chapter 4 of attached [thesis file](https://github.com/Qwebeck/capacity-planning-solver/blob/master/thesis.pdf) for more details.
 
 # Command Line Interface
 This repository containts a CLI(Command Line Interface) that allows to make a prediction with  solvers mentioned above, run a VRP simulation with predicted fleet and reproduce tests mentioned in the Chapter 5 of the thesis. Specific commands are outlined below.
