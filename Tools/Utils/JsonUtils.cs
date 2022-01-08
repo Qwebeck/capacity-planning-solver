@@ -12,5 +12,11 @@ namespace Tools.Utils
             var json = r.ReadToEnd();
             return JsonConvert.DeserializeObject<T>(json) ?? throw new InvalidOperationException();
         }
+        
+        public static void SaveJson(object toSave, string path)
+        {
+            var json = JsonConvert.SerializeObject(toSave, Formatting.Indented);
+            File.WriteAllText(path, json);
+        }
     }
 }

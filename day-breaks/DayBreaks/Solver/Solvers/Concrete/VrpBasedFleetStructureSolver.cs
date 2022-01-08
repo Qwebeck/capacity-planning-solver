@@ -21,7 +21,7 @@ namespace DayBreaks.Solver.Solvers.Concrete
         public VrpBasedFleetStructureSolver(ConstraintModel<TDimensionMatrix, TNodeManager> constraintModel): this(constraintModel, LocalSearchMetaheuristic.Types.Value.SimulatedAnnealing)
         {}
         public VrpBasedFleetStructureSolver(ConstraintModel<TDimensionMatrix, TNodeManager> constraintModel,
-            LocalSearchMetaheuristic.Types.Value metaheuristic)
+            LocalSearchMetaheuristic.Types.Value metaheuristic, int timeLimit=60*10)
         {
             _metaheuristic = metaheuristic;
             _vrpSolver = new VrpSolver<TDimensionMatrix, TNodeManager>(constraintModel, SolverName);

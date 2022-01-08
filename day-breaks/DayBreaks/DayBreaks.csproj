@@ -3,6 +3,7 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     </PropertyGroup>
 
     <ItemGroup>
@@ -19,7 +20,6 @@
     <ItemGroup>
       <Folder Include="DebugSolutions" />
       <Folder Include="FleetStructureTestResults\ThesisResults" />
-      <Folder Include="FleetStructureTestResults\SecondEvaluation" />
     </ItemGroup>
 
 </Project>

@@ -10,12 +10,9 @@ using Tools.Extensions;
 using Metaheuristic = Google.OrTools.ConstraintSolver.LocalSearchMetaheuristic.Types.Value;
 namespace DayBreaks.BenchmarkRunner
 {
-    enum BenchmarkType {Vrp, FleetStructure}
     public static class VrpMetaheuristicRunner
     {
-        private static string ResultsFolder =>
-            @"C:\Users\Bohdan\Projects\thesis\capacity-planning-solver\day-breaks\DayBreaks\BenchmarkResults";
-
+        
         #region VRP
         private static IEnumerable<Metaheuristic> Metaheuristics => new[]
         {
@@ -25,10 +22,14 @@ namespace DayBreaks.BenchmarkRunner
             Metaheuristic.GuidedLocalSearch
         };
         
-        public static void TestMetaheuristics(IDictionary<string, IVrpSolver> solvers) => solvers.Keys.ForEach(solverName => TestMetaheuristics(solvers[solverName], solverName));
+        public static void TestMetaheuristics(IDictionary<string, IVrpSolver> solvers, string resultsFolder) => solvers.Keys.ForEach(solverName => TestMetaheuristics(solvers[solverName], solverName, resultsFolder));
 
-        public static void TestMetaheuristics(IVrpSolver vrpSolver, string name)
+        public static void TestMetaheuristics(IVrpSolver vrpSolver, string name, string resultsFolder)
         {
+            if (!Directory.Exists(resultsFolder))
+            {
+                Directory.CreateDirectory(resultsFolder);
+            }
             Metaheuristics.ForEach(metaheuristic =>
             {
                 Console.WriteLine($"Running benchmark for solver {name} with metaheuristic {metaheuristic}");
@@ -39,18 +40,19 @@ namespace DayBreaks.BenchmarkRunner
                     Console.WriteLine("Solution was not found");
                     return;
                 }
-                var solutionPath = CreateSolutionFilePath(name, metaheuristic);
+                var solutionPath = CreateSolutionFilePath(resultsFolder, name,  metaheuristic);
                 SaveSolution(solution, solutionPath);
             });  
         }
         #endregion
 
         #region Saving
-        private static string CreateSolutionFilePath(string solverName, Metaheuristic metaheuristic) =>
-            $"{ResultsFolder}\\{solverName}_{metaheuristic}.json";
+        private static string CreateSolutionFilePath(string resultsFolder, string solverName, Metaheuristic metaheuristic) =>
+            $"{resultsFolder}\\{solverName}_{metaheuristic}.json";
         
         private static void SaveSolution(object solution, string path)
         {
+            
             var json = JsonConvert.SerializeObject(solution, Formatting.Indented);
             File.WriteAllText(path, json);
         }
